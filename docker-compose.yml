@@ -10,7 +10,7 @@ services:
     volumes:
       - ./mysql_data:/var/lib/mysql
     networks:
-      - zalongwa
+      - global_network
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -23,7 +23,7 @@ services:
     ports:
       - "8081:80"
     networks:
-      - zalongwa
+      - global_network
 
   portainer:
     image: portainer/portainer-ce
@@ -35,12 +35,12 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./portainer_data:/data
     networks:
-      - zalongwa
+      - global_network
 
 volumes:
   mysql_data:
   portainer_data:
 
 networks:
-  zalongwa:
+  global_network:
     external: true
