@@ -1,4 +1,4 @@
-version: "3.9"
+# version: "3.9"
 
 services:
 
@@ -7,11 +7,17 @@ services:
     container_name: mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: passw0rd
     volumes:
       - ./mysql_data:/var/lib/mysql
+    ports:
+      - "3308:3306"
+    deploy:
+      resources:
+        limits:
+          memory: 2G
     networks:
-      - zalongwa
+      - mynetwork
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -22,7 +28,7 @@ services:
       PMA_PORT: 3306
       UPLOAD_LIMIT: 256M 
     networks:
-      - zalongwa
+      - mynetwork
     ports:
       - "8080:80"
     # labels:
@@ -50,8 +56,8 @@ services:
 
 volumes:
   mysql_data:
-  portainer_data:
+  # portainer_data:
 
 networks:
-  zalongwa:
+  mynetwork:
     external: true
