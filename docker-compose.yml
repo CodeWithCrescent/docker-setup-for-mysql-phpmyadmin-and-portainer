@@ -38,15 +38,17 @@ services:
     #   - "traefik.http.routers.phpmyadmin.tls.certresolver=myresolver"
     #   - "traefik.http.services.phpmyadmin.loadbalancer.server.port=80"
 
-  # portainer:
-  #   image: portainer/portainer-ce
-  #   container_name: portainer_
-  #   restart: always
-  #   volumes:
-  #     - /var/run/docker.sock:/var/run/docker.sock
-  #     - ./portainer_data:/data
-  #   networks:
-  #     - zalongwa
+   portainer:
+     image: portainer/portainer-ce
+     container_name: portainer_
+     restart: always
+     volumes:
+       - /var/run/docker.sock:/var/run/docker.sock
+       - ./portainer_data:/data
+     ports:
+       - "9000:9000"
+     networks:
+       - mynetwork
   #   labels:
   #     - "traefik.enable=true"
   #     - "traefik.http.routers.portainer_.rule=Host(`portainer.example.com`)"
@@ -56,7 +58,7 @@ services:
 
 volumes:
   mysql_data:
-  # portainer_data:
+  portainer_data:
 
 networks:
   mynetwork:
