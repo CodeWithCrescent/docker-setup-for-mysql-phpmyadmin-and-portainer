@@ -1,3 +1,8 @@
 remeber to creaate an external network
 
 docker network create sambilanet
+
+cp .env.example .env
+
+Just access portainer and PHPMyadmin via SSH tunnel:
+ssh -L 9000:localhost:9000 root@your-server-ip
