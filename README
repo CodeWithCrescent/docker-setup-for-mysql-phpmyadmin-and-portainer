@@ -6,3 +6,4 @@ cp .env.example .env
 
 Just access portainer and PHPMyadmin via SSH tunnel:
 ssh -L 9000:localhost:9000 root@your-server-ip
+ssh -L 8080:localhost:8080 csambila@your-server-ip
