@@ -7,7 +7,7 @@ services:
       POSTGRES_USER: sambila
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - pg_data:/var/lib/postgresql/data
     networks:
       - sambilanet
 
@@ -38,5 +38,16 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
+    networks:
+      - sambilanet
     ports:
       - "127.0.0.1:9000:9000"
+
+volumes:
+  pg_data:
+  mysql_data:
+  portainer_data:
+
+networks:
+  sambilanet:
+    external: true
