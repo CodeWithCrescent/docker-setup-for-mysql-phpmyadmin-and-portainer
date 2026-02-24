@@ -16,7 +16,7 @@ services:
         limits:
           memory: 2G
     networks:
-      - mynetwork
+      - sambilanet
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -27,7 +27,7 @@ services:
       PMA_PORT: 3306
       UPLOAD_LIMIT: 256M 
     networks:
-      - mynetwork
+      - sambilanet
     ports:
       - "8080:80"
     # labels:
@@ -47,7 +47,7 @@ services:
      ports:
        - "9000:9000"
      networks:
-       - mynetwork
+       - sambilanet
   #   labels:
   #     - "traefik.enable=true"
   #     - "traefik.http.routers.portainer_.rule=Host(`portainer.example.com`)"
@@ -60,5 +60,5 @@ volumes:
   portainer_data:
 
 networks:
-  mynetwork:
+  sambilanet:
     external: true
