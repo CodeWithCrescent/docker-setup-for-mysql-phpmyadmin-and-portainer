@@ -1,7 +1,13 @@
+# version: '3.9'
+
 services:
 
+  # ------------------------------------
+  # PostgreSQL Database
+  # ------------------------------------
   postgres:
     image: postgres:15-alpine
+    container_name: global_postgres15
     restart: always
     environment:
       POSTGRES_USER: sambila
@@ -11,8 +17,12 @@ services:
     networks:
       - sambilanet
 
+  # ------------------------------------
+  # MySQL Database
+  # ------------------------------------
   mysql:
     image: mysql:8.0
+    container_name: global_mysql8
     restart: always
     mem_limit: 2g
     environment:
@@ -22,8 +32,12 @@ services:
     networks:
       - sambilanet
 
+  # ------------------------------------
+  # phpMyAdmin (internal only)
+  # ------------------------------------
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
+    container_name: global_phpmyadmin
     restart: always
     environment:
       PMA_HOST: mysql
@@ -32,8 +46,12 @@ services:
     ports:
       - "127.0.0.1:8080:80"
 
+  # ------------------------------------
+  # Portainer (internal only)
+  # ------------------------------------
   portainer:
     image: portainer/portainer-ce
+    container_name: global_portainer
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
